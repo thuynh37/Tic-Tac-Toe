@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+    <style type = "text/css">
+    
+    h1{
+        text-align: center;
+        margin: 30px;
+        color:rgb(10, 139, 129)
+    }
+
+    body{
+        background-color: rgb(0, 255, 255);
+        font-family: Arial, Helvetica, sans-serif
+    }
+
+    #box_grid{
+        border: 3px solid rgb(4, 121, 86);
+        width: max-content;
+        display: grid;
+        background-color: aquamarine;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+        column-gap: 5px;
+        row-gap: 5px;
+    }
+
+    .box{
+        border: 1px solid rgb(4, 121, 86);
+        text-align: center;
+        margin: 5px;
+        background-color: beige;
+        color: rgb(4, 121, 86);
+        font-size: 75px;
+    }
+
+    .center_box{
+        display: flex;
+        justify-content: center;
+    }
+
+    #turn {
+        border: 3px solid rgb(4, 121, 86);
+        background-color: aquamarine;
+        margin: 25px;
+        width: 120px;
+        height: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        color: rgb(10, 139, 129);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+    }
+
+    #start_button{
+        background-color: aquamarine;
+        margin: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        color: rgb(10, 139, 129);
+        display: inline-block;
+        padding: 10px 20px;
+    }
+
+        
+    </style>
+</head>
+<body>
+    <h1> Play Tic-Tac-Toe!</h1>
+    <div class = "center_box">
+    <div id="box_grid">
+        <script>
+            
+            //Given code
+            const NUM_SQUARES = 9;
+            for (i = 0; i < NUM_SQUARES; i++){
+                id = "sq" + i;
+                document.write("<div class='box' id=' " + id + " '></div>");
+            }
+
+            //Initialize variables
+            moves = [];
+            winConditions = [];
+            winner = false;
+            stalemate = false;
+
+            //Starts a new game, resetting variables
+            function start_game(){
+
+                //Get player turn
+                player = Math.random() > 0.5 ? "O" : "X";
+                document.getElementById("turn").innerHTML = "Turn: Player " + player;
+
+                moves = [];
+                winConditions = ["---","---","---","---","---","---","---","---"];
+                winner = false;
+                stalement = false;
+
+                for(i = 0; i<NUM_SQUARES; i++){
+                    document.getElementById(" sq" + i + " ").innerHTML="";
+                    moves.push("-");
+                }
+            }
+
+            //Handles logic for moves based on input, switching players
+			function box(q) {
+                if (!winner && !stalemate) {
+                    var boxNum = q.target.value;
+                    var mybox = document.getElementById(" sq" + boxNum + " ");
+
+                if (mybox.innerHTML === "") {
+                    mybox.innerHTML = player;
+                    player = (player === "X") ? "O" : "X";
+                }
+
+                document.getElementById("turn").innerHTML = "Turn: Player " + player;
+                }
+                board();
+            }
+            
+            //Determines if win conditions are met
+            function isWin(){
+
+                if(winConditions.includes("OOO")){
+                    winner = true;
+                    document.getElementById("turn").innerHTML = "Winner: O";
+                }
+                else if(winConditions.includes("XXX")){
+                    winner = true;
+                    document.getElementById("turn").innerHTML = "Winner: X";
+                }
+                else{
+                    if(!moves.includes("-")){
+                        stalement = true;
+                        document.getElementById("turn").innerHTML = "Stalemate";
+                    }
+                }
+            }
+
+            //Updates the board based on player move
+            function board() {
+                var board = "";
+
+                moves.forEach(function(part, index){
+                    var boxVal = document.getElementById(" sq" + index + " ").innerHTML;
+                    board += boxVal;
+                    
+                    if(boxVal != ""){
+                        moves[index] = boxVal;
+                    }
+                    else{
+                        board += "-";
+                    }
+                });
+
+                winConditions = [board.slice(0,3),board.slice(3,6),board.slice(6)]
+
+                winConditions.push(board[0] + board[4] + board[8]);
+                winConditions.push(board[0] + board[3] + board[6]);
+                winConditions.push(board[1] + board[4] + board[7]);
+                winConditions.push(board[2] + board[4] + board[6]);
+                winConditions.push(board[2] + board[5] + board[8]);
+
+                isWin();
+            }
+
+            //Sets up event listener
+            window.onload=function(){
+                start_game();
+				for (i = 0; i < NUM_SQUARES; i++){ 
+				  	cur=document.getElementById(" sq" + i + " ");
+				  	cur.onclick = box;
+				  	cur.value = i;
+				}
+            }
+
+        </script>
+    </div>
+    </div>
+    <div class = "center_box">
+        <div id = "turn">Turn:</div>
+        <button id = "start_button" onclick = "start_game()">Start Game</button>
+    </div>
+</body>
+</html>

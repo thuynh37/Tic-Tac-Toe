@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tic Tac Toe</title>
+    <style type = "text/css">
+    
+    h1{
+        text-align: center;
+        margin: 30px;
+        color:rgb(10, 139, 129)
+    }
+
+    body{
+        background-color: rgb(0, 255, 255);
+        font-family: Arial, Helvetica, sans-serif
+    }
+
+    #box_grid{
+        border: 3px solid rgb(4, 121, 86);
+        width: max-content;
+        display: grid;
+        background-color: aquamarine;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+        column-gap: 5px;
+        row-gap: 5px;
+    }
+
+    .playermove{
+        text-align: center;
+        color: blue;
+        font-size: 75px;
+    }
+
+    .box{
+        border: 1px solid rgb(4, 121, 86);
+        text-align: center;
+        margin: 5px;
+        background-color: beige;
+    }
+
+    .center_box{
+        display: flex;
+        justify-content: center;
+    }
+
+    #turn{
+        border: 3px solid rgb(4, 121, 86);
+        background-color: aquamarine;
+        margin: 25px;
+        width: 120px;
+        height: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: rgb(10, 139, 129);
+        display: inline-block;
+        padding: 5px;
+    }
+
+        
+    </style>
+</head>
+<body>
+    <h1> Play Tic-Tac-Toe!</h1>
+    <div class = "center_box">
+    <div id="box_grid">
+        <script>
+            //Given code
+            const NUM_SQUARES = 9;
+            for (i=0; i<NUM_SQUARES; i++){
+                id = "sq"+i;
+                document.write( "<div class='box' id='" + id + "'></div>" );
+            }
+        </script>
+    </div>
+    </div>
+    <div class = "center_box">
+        <div id = "turn">Turn:</div>
+        <div id = "turn">Winner:</div>
+    </div>
+</body>
+</html>

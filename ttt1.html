@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tic Tac Toe</title>
+    <style type = "text/css">
+    
+    #box_grid{
+        width: max-content;
+        display: grid;
+        background-color: aquamarine;
+        grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px;
+        column-gap: 5px;
+        row-gap: 5px;
+    }
+
+    .playermove{
+        text-align: center;
+        color: blue;
+        font-size: 75px;
+    }
+
+    .box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 1px rgb(34, 119, 39);
+        margin: 5px;
+        background-color: beige;
+    }
+
+    .center_box{
+        display: flex;
+        justify-content: center;
+    }
+        
+    </style>
+</head>
+<body>
+    <div class = "center_box">
+    <div id = "box_grid">
+        <div class = "box"><div class = "playermove">X</div></div>
+        <div class = "box"><div class = "playermove"></div></div>
+        <div class = "box"><div class = "playermove"></div></div>
+        <div class = "box"><div class = "playermove"></div></div>
+        <div class = "box"><div class = "playermove"></div></div>
+        <div class = "box"><div class = "playermove"></div></div>
+        <div class = "box"><div class = "playermove">O</div></div>
+        <div class = "box"><div class = "playermove"></div></div>
+        <div class = "box"><div class = "playermove">X</div></div>
+    </div>
+    </div>
+
+</body>
+</html>
